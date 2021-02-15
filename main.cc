@@ -37,7 +37,7 @@ int main() {
     }
 
     // Create Bot object
-    auto bot = newBot();
+    auto bot = std::make_shared<DppBot>();
     
     // Don't complain about unhandled events
     bot->debugUnhandled = false;
@@ -56,7 +56,7 @@ int main() {
         {"READY", [&self](json data) { self = data["user"]; }});
 
     bot->prefix = "~";
-
+    
     bot->respond("help", "Mention me and I'll echo your message back!");
     
     bot->respond("about", [&bot](json msg) {
